@@ -9,20 +9,32 @@ class BowlingGame {
 
   int calculateScore(String input) {
     String[] records = input.split(EMPTY);
+    return calculateTotalScore(buildFrames(records));
+  }
+
+  private List<Frame> buildFrames(String[] records) {
     List<Frame> frames = new ArrayList<>();
-    for (int index1 = 0; index1 < records.length;) {
-      frames.add(new Frame(records[index1++], records[index1++]));
+    for (int index = 0; index < records.length;) {
+      frames.add(new Frame(records[index++], records[index++]));
     }
+    return frames;
+  }
+
+  private int calculateTotalScore(List<Frame> frames) {
     int totalScore = 0;
     for (int index = 0; index < frames.size(); index++) {
-      Frame frame = frames.get(index);
-      totalScore += frame.calculateScore();
-      if (frame.isSpare()) {
-        Frame nextFrame = frames.get(index + 1);
-        totalScore += nextFrame.getFirstScore();
-      }
+      totalScore += calculateScoreByFrame(frames, index);
     }
     return totalScore;
+  }
+
+  private int calculateScoreByFrame(List<Frame> frames, int index) {
+    Frame frame = frames.get(index);
+    if (frame.isSpare()) {
+      Frame nextFrame = frames.get(index + 1);
+      return frame.calculateScore() + nextFrame.getFirstScore();
+    }
+    return frame.calculateScore();
   }
 
 }

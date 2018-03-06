@@ -2,28 +2,26 @@ package org.jani.bowling;
 
 import static java.lang.Integer.parseInt;
 
-public class Frame {
-  private static final String SPARE_SIGNAL = "/";
+class Frame {
   private String first;
   private String second;
 
-  public Frame(String first, String second) {
+  private static final String SPARE_SIGNAL = "/";
+
+  Frame(String first, String second) {
     this.first = first;
     this.second = second;
   }
 
-  public int calculateScore() {
-    if (isSpare()) {
-      return 10;
-    }
-    return parseInt(first) + parseInt(second);
+  int calculateScore() {
+    return isSpare() ? 10 : parseInt(first) + parseInt(second);
   }
 
-  public boolean isSpare() {
+  boolean isSpare() {
     return SPARE_SIGNAL.endsWith(second);
   }
 
-  public int getFirstScore() {
+  int getFirstScore() {
     return parseInt(first);
   }
 }
