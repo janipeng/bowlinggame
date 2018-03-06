@@ -56,4 +56,18 @@ public class BowlingGameTest {
 
     assertThat(score, is(300));
   }
+
+  @Test
+  public void allSpares() throws Exception {
+    int score = bowlingGame.getScore("5/5/5/5/5/5/5/5/5/5/5");
+
+    assertThat(score, is(150));
+  }
+
+  @Test
+  public void ninePinsDownEachRound() throws Exception {
+    int score = bowlingGame.getScore("9-9-9-9-9-9-9-9-9-9-");
+
+    assertThat(score, is(90));
+  }
 }

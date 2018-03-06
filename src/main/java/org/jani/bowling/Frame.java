@@ -2,6 +2,7 @@ package org.jani.bowling;
 
 import static java.lang.Integer.parseInt;
 import static org.jani.bowling.BowlingConstant.EMPTY;
+import static org.jani.bowling.BowlingConstant.LINE;
 import static org.jani.bowling.BowlingConstant.SPARE_SIGNAL;
 import static org.jani.bowling.BowlingConstant.STRIKE_SIGNAL;
 
@@ -17,11 +18,11 @@ class Frame {
   }
 
   int calculateScore() {
-    return isSpare() || isStrike() ? 10 : getFirstScore() + getSecondScore(second);
+    return isSpare() || isStrike() ? 10 : getFirstScore() + getSecondScore();
   }
 
-  private int getSecondScore(String second) {
-    return "".equals(second) ? 0 : parseInt(second);
+  private int getSecondScore() {
+    return EMPTY.equals(second) || LINE.equals(second) ? 0 : parseInt(second);
   }
 
   boolean isStrike() {
@@ -33,7 +34,7 @@ class Frame {
   }
 
   int getFirstScore() {
-    return "".equals(first) ? 0 : parseInt(first);
+    return EMPTY.equals(first) || LINE.equals(first) ? 0 : parseInt(first);
   }
 
   void setBonus(boolean bonus) {
