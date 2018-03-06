@@ -28,4 +28,11 @@ public class BowlingGameTest {
 
     assertThat(score, is(70));
   }
+
+  @Test
+  public void oneSpareInLastFrame() throws Exception {
+    int score = bowlingGame.calculateScore("1234512345123451235/5");
+
+    assertThat(score, is(66));
+  }
 }

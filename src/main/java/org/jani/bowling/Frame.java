@@ -7,6 +7,7 @@ class Frame {
   private String second;
 
   private static final String SPARE_SIGNAL = "/";
+  private boolean bonus;
 
   Frame(String first, String second) {
     this.first = first;
@@ -18,10 +19,18 @@ class Frame {
   }
 
   boolean isSpare() {
-    return SPARE_SIGNAL.endsWith(second);
+    return SPARE_SIGNAL.equals(second);
   }
 
   int getFirstScore() {
     return parseInt(first);
+  }
+
+  public void setBonus(boolean bonus) {
+    this.bonus = bonus;
+  }
+
+  public boolean isBonus() {
+    return bonus;
   }
 }
