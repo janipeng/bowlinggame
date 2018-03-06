@@ -3,6 +3,7 @@ package org.jani.bowling;
 import static java.lang.Integer.parseInt;
 
 class Frame {
+  private static final String STRIKE_SIGNAL = "X";
   private String first;
   private String second;
   private boolean bonus;
@@ -15,7 +16,11 @@ class Frame {
   }
 
   int calculateScore() {
-    return isSpare() ? 10 : parseInt(first) + parseInt(second);
+    return isSpare() || isStrike() ? 10 : parseInt(first) + parseInt(second);
+  }
+
+  boolean isStrike() {
+    return STRIKE_SIGNAL.equals(first);
   }
 
   boolean isSpare() {
@@ -32,5 +37,9 @@ class Frame {
 
   boolean isBonus() {
     return bonus;
+  }
+
+  public int getSecondScore() {
+    return parseInt(second);
   }
 }

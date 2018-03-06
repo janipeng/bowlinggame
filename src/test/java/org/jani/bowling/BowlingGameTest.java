@@ -35,4 +35,11 @@ public class BowlingGameTest {
 
     assertThat(score, is(66));
   }
+
+  @Test
+  public void oneStrikeInFirstFrame() throws Exception {
+    int score = bowlingGame.calculateScore("X345123451234512345");
+
+    assertThat(score, is(74));
+  }
 }
