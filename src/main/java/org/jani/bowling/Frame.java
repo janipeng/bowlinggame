@@ -1,14 +1,13 @@
 package org.jani.bowling;
 
 import static java.lang.Integer.parseInt;
+import static org.jani.bowling.BowlingConstant.SPARE_SIGNAL;
+import static org.jani.bowling.BowlingConstant.STRIKE_SIGNAL;
 
 class Frame {
-  private static final String STRIKE_SIGNAL = "X";
   private String first;
   private String second;
   private boolean bonus;
-
-  private static final String SPARE_SIGNAL = "/";
 
   Frame(String first, String second) {
     this.first = first;

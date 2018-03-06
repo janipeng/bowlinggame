@@ -7,34 +7,40 @@ import static org.jani.bowling.BowlingConstant.STRIKE_SIGNAL;
 
 class FramesBuilder {
 
-  private static final String ZERO = "0";
   private static final String EMPTY = "";
 
   List<Frame> build(String[] records) {
     List<Frame> frames = new ArrayList<>();
     int index = 0;
-    for (; index < records.length - 1;) {
-      String record = records[index++];
-      Frame frame;
-      if (isStrike(record)) {
-        frame = createFrame(record, EMPTY, false);
-      } else {
-        frame = createFrame(record, records[index++], false);
-      }
-      frames.add(frame);
+    for (; index < records.length - 1; index++) {
       if (frames.size() == 10) {
         break;
       }
+      frames.add(buildFrame(records, index));
+      if (!isStrike(records[index])) {
+        index++;
+      }
     }
     if (hasBonus(index, records.length)) {
-      String firstRecord = records[index++];
-      String secondRecord = EMPTY;
-      if (records.length > index) {
-        secondRecord = records[index];
-      }
-      frames.add(createFrame(firstRecord, secondRecord, true));
+      frames.add(createBonusFrame(records, index));
     }
     return frames;
+  }
+
+  private Frame createBonusFrame(String[] records, int index) {
+    String firstRecord = records[index++];
+    String secondRecord = EMPTY;
+    if (records.length > index) {
+      secondRecord = records[index];
+    }
+    return createFrame(firstRecord, secondRecord, true);
+  }
+
+  private Frame buildFrame(String[] records, int index) {
+    if (isStrike(records[index])) {
+      return createFrame(records[index], EMPTY, false);
+    }
+    return createFrame(records[index], records[index + 1], false);
   }
 
   private boolean isStrike(String record) {

@@ -1,5 +1,6 @@
 package org.jani.bowling;
 
-public class BowlingConstant {
-  public static final String STRIKE_SIGNAL = "X";
+class BowlingConstant {
+  static final String STRIKE_SIGNAL = "X";
+  static final String SPARE_SIGNAL = "/";
 }
