@@ -70,4 +70,12 @@ public class BowlingGameTest {
 
     assertThat(score, is(90));
   }
+
+  @Test
+  public void compoundedCase() throws Exception {
+    int score = bowlingGame.getScore("125-3/XX12345123XXX");
+
+    assertThat(score, is(113));
+  }
+
 }

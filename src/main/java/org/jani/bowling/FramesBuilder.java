@@ -48,7 +48,7 @@ class FramesBuilder {
       frame.setUpComingRecords(records[index + 1] + records[index + 2]);
     }
     if (frame.isSpare()) {
-      frame.setUpComingRecords(records[index + 1]);
+      frame.setUpComingRecords(records[index + 2]);
     }
     return frame;
   }

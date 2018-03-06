@@ -18,11 +18,9 @@ class BowlingCalculator {
       return 0;
     }
     if (frame.isSpare()) {
-      Frame nextFrame = frames.get(index + 1);
-      return frame.calculateScore() + nextFrame.getFirstScore();
+      return frame.calculateScore() + frame.getBonus();
     }
     if (frame.isStrike()) {
-      Frame nextFrame = frames.get(index + 1);
       return frame.calculateScore() + frame.getBonus();
     }
     return frame.calculateScore();
