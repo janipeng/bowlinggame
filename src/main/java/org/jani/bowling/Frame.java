@@ -5,9 +5,9 @@ import static java.lang.Integer.parseInt;
 class Frame {
   private String first;
   private String second;
+  private boolean bonus;
 
   private static final String SPARE_SIGNAL = "/";
-  private boolean bonus;
 
   Frame(String first, String second) {
     this.first = first;
@@ -26,11 +26,11 @@ class Frame {
     return parseInt(first);
   }
 
-  public void setBonus(boolean bonus) {
+  void setBonus(boolean bonus) {
     this.bonus = bonus;
   }
 
-  public boolean isBonus() {
+  boolean isBonus() {
     return bonus;
   }
 }

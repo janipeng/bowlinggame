@@ -6,6 +6,7 @@ import java.util.List;
 class BowlingGame {
 
   private static final String EMPTY = "";
+  private static final String ZERO = "0";
 
   int calculateScore(String input) {
     String[] records = input.split(EMPTY);
@@ -16,14 +17,22 @@ class BowlingGame {
     List<Frame> frames = new ArrayList<>();
     int index = 0;
     for (; index < records.length - 1;) {
-      frames.add(new Frame(records[index++], records[index++]));
+      frames.add(createFrame(records[index++], records[index++], false));
     }
-    if (records.length > index) {
-      Frame frame = new Frame(records[index], "0");
-      frame.setBonus(true);
-      frames.add(frame);
+    if (hasBonus(index, records.length)) {
+      frames.add(createFrame(records[index], ZERO, true));
     }
     return frames;
+  }
+
+  private boolean hasBonus(int index, int length) {
+    return length > index;
+  }
+
+  private Frame createFrame(String first, String second, boolean bonus) {
+    Frame frame = new Frame(first, second);
+    frame.setBonus(bonus);
+    return frame;
   }
 
   private int calculateTotalScore(List<Frame> frames) {
