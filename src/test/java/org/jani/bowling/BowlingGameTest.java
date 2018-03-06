@@ -17,28 +17,28 @@ public class BowlingGameTest {
 
   @Test
   public void noSpareAndNoStrike() throws Exception {
-    int score = bowlingGame.calculateScore("12345123451234512345");
+    int score = bowlingGame.getScore("12345123451234512345");
 
     assertThat(score, is(60));
   }
 
   @Test
   public void oneSpareInFirstFrame() throws Exception {
-    int score = bowlingGame.calculateScore("5/345123451234512345");
+    int score = bowlingGame.getScore("5/345123451234512345");
 
     assertThat(score, is(70));
   }
 
   @Test
   public void oneSpareInLastFrame() throws Exception {
-    int score = bowlingGame.calculateScore("1234512345123451235/5");
+    int score = bowlingGame.getScore("1234512345123451235/5");
 
     assertThat(score, is(66));
   }
 
   @Test
   public void oneStrikeInFirstFrame() throws Exception {
-    int score = bowlingGame.calculateScore("X345123451234512345");
+    int score = bowlingGame.getScore("X345123451234512345");
 
     assertThat(score, is(74));
   }

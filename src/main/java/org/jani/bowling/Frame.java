@@ -39,7 +39,4 @@ class Frame {
     return bonus;
   }
 
-  public int getSecondScore() {
-    return parseInt(second);
-  }
 }
