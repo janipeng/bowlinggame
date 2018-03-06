@@ -49,4 +49,11 @@ public class BowlingGameTest {
 
     assertThat(score, is(69));
   }
+
+  @Test
+  public void allStrikes() throws Exception {
+    int score = bowlingGame.getScore("XXXXXXXXXXXX");
+
+    assertThat(score, is(300));
+  }
 }

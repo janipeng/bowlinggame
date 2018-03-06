@@ -23,7 +23,7 @@ class BowlingCalculator {
     }
     if (frame.isStrike()) {
       Frame nextFrame = frames.get(index + 1);
-      return frame.calculateScore() + nextFrame.calculateScore();
+      return frame.calculateScore() + frame.getBonus();
     }
     return frame.calculateScore();
   }

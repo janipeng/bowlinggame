@@ -9,7 +9,8 @@ class FramesBuilder {
 
   private static final String EMPTY = "";
 
-  List<Frame> build(String[] records) {
+  List<Frame> build(String input) {
+    String[] records = input.split(EMPTY);
     List<Frame> frames = new ArrayList<>();
     int index = 0;
     for (; index < records.length - 1; index++) {
@@ -37,11 +38,21 @@ class FramesBuilder {
   }
 
   private Frame buildFrame(String[] records, int index) {
+    Frame frame;
     if (isStrike(records[index])) {
-      return createFrame(records[index], EMPTY, false);
+      frame = createFrame(records[index], EMPTY, false);
+    } else {
+      frame = createFrame(records[index], records[index + 1], false);
     }
-    return createFrame(records[index], records[index + 1], false);
+    if (frame.isStrike()) {
+      frame.setUpComingRecords(records[index + 1] + records[index + 2]);
+    }
+    if (frame.isSpare()) {
+      frame.setUpComingRecords(records[index + 1]);
+    }
+    return frame;
   }
+
 
   private boolean isStrike(String record) {
     return STRIKE_SIGNAL.equals(record);
