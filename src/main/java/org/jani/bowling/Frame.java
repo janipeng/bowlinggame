@@ -16,7 +16,11 @@ class Frame {
   }
 
   int calculateScore() {
-    return isSpare() || isStrike() ? 10 : parseInt(first) + parseInt(second);
+    return isSpare() || isStrike() ? 10 : getFirstScore() + getSecondScore(second);
+  }
+
+  private int getSecondScore(String second) {
+    return "".equals(second) ? 0 : parseInt(second);
   }
 
   boolean isStrike() {
@@ -28,7 +32,7 @@ class Frame {
   }
 
   int getFirstScore() {
-    return parseInt(first);
+    return "".equals(first) ? 0 : parseInt(first);
   }
 
   void setBonus(boolean bonus) {

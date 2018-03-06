@@ -22,9 +22,17 @@ class FramesBuilder {
         frame = createFrame(record, records[index++], false);
       }
       frames.add(frame);
+      if (frames.size() == 10) {
+        break;
+      }
     }
     if (hasBonus(index, records.length)) {
-      frames.add(createFrame(records[index], EMPTY, true));
+      String firstRecord = records[index++];
+      String secondRecord = EMPTY;
+      if (records.length > index) {
+        secondRecord = records[index];
+      }
+      frames.add(createFrame(firstRecord, secondRecord, true));
     }
     return frames;
   }
