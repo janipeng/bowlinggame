@@ -17,6 +17,10 @@ class Frame {
     this.second = second;
   }
 
+  Frame() {
+
+  }
+
   int calculateScore() {
     return isSpare() || isStrike() ? 10 : getFirstScore() + getSecondScore();
   }
@@ -67,5 +71,13 @@ class Frame {
       }
     }
     return totalBonus;
+  }
+
+  public void setFirst(String first) {
+    this.first = first;
+  }
+
+  public void setSecond(String second) {
+    this.second = second;
   }
 }

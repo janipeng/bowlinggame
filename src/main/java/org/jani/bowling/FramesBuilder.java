@@ -34,17 +34,18 @@ class FramesBuilder {
     if (records.length > index) {
       secondRecord = records[index];
     }
-    return createFrame(firstRecord, secondRecord, true);
+    Frame frame = new Frame(firstRecord, secondRecord);
+    frame.setBonus(true);
+    return frame;
   }
 
   private Frame buildFrame(String[] records, int index) {
-    Frame frame;
-    if (isStrike(records[index])) {
-      frame = createFrame(records[index], EMPTY, false);
+    Frame frame = new Frame();
+    frame.setFirst(records[index]);
+    frame.setBonus(false);
+    if (!isStrike(records[index])) {
+      frame.setSecond(records[index + 1]);
     } else {
-      frame = createFrame(records[index], records[index + 1], false);
-    }
-    if (frame.isStrike()) {
       frame.setUpComingRecords(records[index + 1] + records[index + 2]);
     }
     if (frame.isSpare()) {
@@ -60,12 +61,6 @@ class FramesBuilder {
 
   private boolean hasBonus(int index, int length) {
     return length > index;
-  }
-
-  private Frame createFrame(String first, String second, boolean bonus) {
-    Frame frame = new Frame(first, second);
-    frame.setBonus(bonus);
-    return frame;
   }
 
 }
